@@ -86,11 +86,11 @@
         </div>
 
         <div class="box is-transparent has-text-centered">
-          <button class="button is-success mt-6 is-rounded">Trigger Session</button>
+          <button v-on:click="clicked" class="button is-success mt-6 is-rounded">Trigger Session</button>
         </div>
       </div>
     </div>
-    <section class="hero is-large is-white">
+    <section class="hero is-large is-white is-hidden-mobile">
       <div class="hero-body">
         <div class="columns">
           <div class="column">
@@ -123,13 +123,13 @@
               </thead>
               <tbody>
                 <tr>
-                  <th>Basket</th>
+                  <th> Maze</th>
                   <td>30</td>
                   <td>7</td>
                   <td>01/13/13</td>
                 </tr>
                 <tr>
-                  <th>Maze</th>
+                  <th>Basket</th>
                   <td>30</td>
                   <td>7</td>
                   <td>01/13/13</td>
@@ -180,6 +180,7 @@
         </div>
       </div>
     </section>
+
     <!--<div>
     <textarea  v-model.lazy="title" name="text" id="" cols="30" rows="10"></textarea>
     <button v-on:click = "clicked">Click me</button>
@@ -224,21 +225,22 @@ export default {
     };
   },
   created() {
-    this.socket = io("http://localhost:3000");
+    //connexion au socket
+    this.socket = io.connect("http://localhost:3000");
   },
   mounted() {
+    //on écoute sur  l'evenement 'exercice' et on récupère la data
     this.socket.on("exercice", (data) => {
       this.exercice = data
       
       //console.log(this.exercice)
-      this.socket.on("exercisesToBeDone", (data) => {
-        console.log(data);
-      });
+    
     });
   },
   methods: {
     clicked() {
-      this.socket.emit("sendP", this.exercice);
+      //on envoie le premier exercice au patient sur l'evenement 
+      this.socket.emit("sendP", this.exercice[0]);
     },
   },
 };
