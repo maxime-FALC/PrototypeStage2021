@@ -8,7 +8,7 @@
 <script>
 import io from "socket.io-client"
 export default {
-    name: 'Dashboard',
+    name: 'DashboardPatient',
     data() {
       return {
         socket: null,

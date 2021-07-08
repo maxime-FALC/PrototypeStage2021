@@ -86,7 +86,7 @@
         </div>
 
         <div class="box is-transparent has-text-centered">
-          <button class="button is-success mt-6">Trigger Session</button>
+          <button class="button is-success mt-6 is-rounded">Trigger Session</button>
         </div>
       </div>
     </div>
@@ -102,7 +102,7 @@
               </div>
               <div class="level-right">
                 <div class="level-item">
-                  <button class="button is-info">Edit Program</button>
+                  <button class="button is-info is-rounded">Edit Program</button>
                 </div>
               </div>
             </nav>
@@ -147,7 +147,7 @@
               </div>
               <div class="level-right">
                 <div class="level-item">
-                  <button class="button is-success">Add Exercise</button>
+                  <button class="button is-success is-rounded">Add Exercise</button>
                 </div>
               </div>
             </nav>
@@ -195,24 +195,8 @@ export default {
     return {
       socket: null,
       title: "lolent",
-      exercice: [
-      /*  {
-          title: "Basket",
-          bodyparts: ["hands", "shoulder"],
-          numCogTasks: 34,
-          numPercTasks: 45,
-          numMotorTasks: 45,
-          expectedComplTime: 10,
-        },
-        {
-          title: "Maze",
-          bodyparts: ["hands", "shoulder"],
-          numCogTasks: 34,
-          numPercTasks: 45,
-          numMotorTasks: 45,
-          expectedComplTime: 10,
-        },
-      */],
+      exercice: [],
+      program : [],
       patients: [
         {
           nameP: "PatientA",

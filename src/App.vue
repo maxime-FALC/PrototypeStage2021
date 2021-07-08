@@ -1,11 +1,15 @@
 <template>
-  <Dashboard/>
-
-
+<div> 
+  <div id="nav">
+      <router-link to="/"></router-link>
+     
+  </div>
+  <router-view />
+  </div>
 </template>
 
-<script>
-import Dashboard from './components/Dashboard.vue'
+<!--<script>
+import Home from './components/Home.vue'
 
 
 
@@ -13,12 +17,12 @@ export default {
   name: 'App',
   components: {
    
-    Dashboard,
+    Home,
 
   }
 }
 </script>
-
+-->
 <style>
 
 </style>
