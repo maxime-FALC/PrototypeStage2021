@@ -3,7 +3,7 @@
     <div class="columns">
       <div class="column">
         <div class="card">
-          <header class="card-header has-background-primary ">
+          <header class="card-header has-background-primary">
             <p class="card-header-title has-text-white">Patient Info</p>
             <button class="card-header-icon" aria-label="more options">
               <span class="icon">
@@ -86,7 +86,12 @@
         </div>
 
         <div class="box is-transparent has-text-centered">
-          <button v-on:click="clicked" class="button is-success mt-6 is-rounded">Trigger Session</button>
+          <button
+            v-on:click="clicked"
+            class="button is-success mt-6 is-rounded"
+          >
+            Trigger Session
+          </button>
         </div>
       </div>
     </div>
@@ -102,7 +107,9 @@
               </div>
               <div class="level-right">
                 <div class="level-item">
-                  <button class="button is-info is-rounded">Edit Program</button>
+                  <button class="button is-info is-rounded">
+                    Edit Program
+                  </button>
                 </div>
               </div>
             </nav>
@@ -111,19 +118,23 @@
             <!-- Left side -->
 
             <table class="table">
-              <thead class= "has-background-black ">
+              <thead class="has-background-black">
                 <tr>
-                  <th  class="has-text-white"><abbr title="Exercice ">Exercice</abbr></th>
+                  <th class="has-text-white">
+                    <abbr title="Exercice ">Exercice</abbr>
+                  </th>
                   <th class="has-text-white">Planned num of sessions</th>
                   <th class="has-text-white">
-                    <abbr title="Played" >Num of completion time</abbr>
+                    <abbr title="Played">Num of completion time</abbr>
                   </th>
-                  <th class="has-text-white"><abbr title="Won" >Next Session</abbr></th>
+                  <th class="has-text-white">
+                    <abbr title="Won">Next Session</abbr>
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th> Maze</th>
+                  <th>Maze</th>
                   <td>30</td>
                   <td>7</td>
                   <td>01/13/13</td>
@@ -147,22 +158,32 @@
               </div>
               <div class="level-right">
                 <div class="level-item">
-                  <button class="button is-success is-rounded">Add Exercise</button>
+                  <button class="button is-success is-rounded">
+                    Add Exercise
+                  </button>
                 </div>
               </div>
             </nav>
 
             <table class="table">
-              <thead class= "has-background-black ">
+              <thead class="has-background-black">
                 <tr>
-                  <th class="has-text-white"><abbr title="Exercice">Exercice</abbr></th>
+                  <th class="has-text-white">
+                    <abbr title="Exercice">Exercice</abbr>
+                  </th>
                   <th class="has-text-white">Bodyparts</th>
                   <th class="has-text-white">
                     <abbr title="Played">Num Cognitive Tasks</abbr>
                   </th>
-                  <th class="has-text-white"><abbr title="Won">Nums Perceptive Tasks</abbr></th>
-                  <th class="has-text-white"><abbr title="Won">Nums Motor Tasks</abbr></th>
-                  <th class="has-text-white"><abbr title="Won">Expected Completion Time</abbr></th>
+                  <th class="has-text-white">
+                    <abbr title="Won">Nums Perceptive Tasks</abbr>
+                  </th>
+                  <th class="has-text-white">
+                    <abbr title="Won">Nums Motor Tasks</abbr>
+                  </th>
+                  <th class="has-text-white">
+                    <abbr title="Won">Expected Completion Time</abbr>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -197,7 +218,7 @@ export default {
       socket: null,
       title: "lolent",
       exercice: [],
-      program : [],
+      program: [],
       patients: [
         {
           nameP: "PatientA",
@@ -231,16 +252,27 @@ export default {
   mounted() {
     //on écoute sur  l'evenement 'exercice' et on récupère la data
     this.socket.on("exercice", (data) => {
-      this.exercice = data
-      
+      this.exercice = data;
+
       //console.log(this.exercice)
-    
     });
   },
   methods: {
+    programBuilder() {
+      var programPatient = new Object()
+      programPatient.exercises = [this.exercice[0]]
+      programPatient.nbTimesPlanned = 37
+      programPatient.nbCompTime = 10 
+      programPatient.nextSession = "12/13/21"
+      var jsonString = JSON.stringify(programPatient)
+
+
+      this.program.push(jsonString);
+    },
     clicked() {
-      //on envoie le premier exercice au patient sur l'evenement 
-      this.socket.emit("sendP", this.exercice[0]);
+      //on envoie le premier exercice au patient sur l'evenement
+      this.programBuilder();
+      this.socket.emit("sendP", this.program[0]);
     },
   },
 };
