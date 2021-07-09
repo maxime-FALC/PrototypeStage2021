@@ -247,7 +247,7 @@ export default {
   },
   created() {
     //connexion au socket
-    this.socket = io.connect("http://localhost:3000");
+    this.socket = io.connect("http://[0000:0000:0000:0000:0000:ffff:c0a8:2b18]:3000");
   },
   mounted() {
     //on écoute sur  l'evenement 'exercice' et on récupère la data

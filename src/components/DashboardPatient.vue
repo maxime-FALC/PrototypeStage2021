@@ -100,7 +100,7 @@ export default {
   },
   //le component se crée on établit la connexion
   created() {
-    this.socket = io.connect("http://localhost:3000");
+    this.socket = io.connect("http://[0000:0000:0000:0000:0000:ffff:c0a8:2b18]:3000");
   },
   mounted() {
     this.socket.on("programSent", (data) => {
